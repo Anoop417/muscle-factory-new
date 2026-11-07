@@ -70,6 +70,148 @@ tr:last-child td{border-bottom:0}
 .row .field{margin-bottom:0;flex:1;min-width:160px}
 #toast{position:fixed;bottom:20px;right:20px;background:var(--panel2);border:1px solid var(--accent);box-shadow:0 0 20px rgba(57,255,20,.4);color:var(--text);padding:12px 16px;border-radius:10px;opacity:0;transform:translateY(10px);transition:.25s;pointer-events:none;font-size:14px;max-width:360px}
 #toast.show{opacity:1;transform:none}
+/* ---------- Goal cards, pickers and sliders ---------- */
+.wizard{ min-height:460px; display:flex; flex-direction:column; }
+.wiz-top{ display:flex; align-items:center; gap:12px; margin-bottom:18px; }
+.wiz-back{ background:none; border:0; color:var(--text); font-size:22px; cursor:pointer; width:36px; }
+.wiz-bar{ flex:1; height:6px; background:var(--panel2); border-radius:6px; overflow:hidden; }
+.wiz-bar > div{ height:100%; background:linear-gradient(90deg,var(--accent),var(--accent2)); transition:width .4s ease; }
+.wiz-count{ font-family:'Orbitron',sans-serif; font-size:12px; color:var(--muted); }
+.wiz-step{ display:none; flex:1; }
+.wiz-step.active{ display:block; animation:pop .4s ease both; }
+.wiz-q{ font-family:'Orbitron',sans-serif; font-size:19px; letter-spacing:.03em; margin:8px 0 18px; text-transform:none; line-height:1.3; }
+.wiz-foot{ margin-top:auto; padding-top:20px; }
+.wiz-next{ width:100%; padding:16px; font-size:16px; }
+.chips-pick{ display:flex; flex-wrap:wrap; gap:10px; }
+.chip-pick{ background:var(--panel2); border:2px solid var(--border); color:var(--text); border-radius:999px; padding:10px 16px; cursor:pointer; font-family:inherit; font-size:15px; transition:.2s; }
+.chip-pick.selected{ border-color:var(--accent); background:#0f2a12; box-shadow:0 0 14px rgba(57,255,20,.35); }
+.pick-cards{ display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:10px; margin-top:6px; }
+.fit-slider{ margin-bottom:18px; }
+.fit-head{ display:flex; justify-content:space-between; align-items:baseline; margin-bottom:8px; }
+.fit-head span{ font-size:12px; color:var(--muted); text-transform:uppercase; letter-spacing:.06em; }
+.fit-head b{ font-family:'Orbitron',sans-serif; font-size:22px; color:var(--accent); text-shadow:0 0 12px rgba(57,255,20,.5); }
+input[type=range]{ -webkit-appearance:none; appearance:none; width:100%; height:8px; border-radius:6px; background:linear-gradient(90deg,var(--accent),var(--accent2)) 0 0/var(--p,50%) 100% no-repeat, var(--panel2); border:1px solid var(--border); padding:0; }
+input[type=range]::-webkit-slider-thumb{ -webkit-appearance:none; width:22px; height:22px; border-radius:50%; background:#fff; border:3px solid var(--accent); box-shadow:0 0 12px var(--accent); cursor:pointer; }
+input[type=range]::-moz-range-thumb{ width:18px; height:18px; border-radius:50%; background:#fff; border:3px solid var(--accent); cursor:pointer; }
+.goal-cards{ display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:10px; margin-top:6px; }
+.goal-card{ background:var(--panel2); border:2px solid var(--border); border-radius:14px; padding:14px; text-align:left; color:var(--text); cursor:pointer; font-family:inherit; display:flex; flex-direction:column; gap:4px; transition:transform .2s, box-shadow .2s, border-color .2s, background .2s; }
+.goal-card:hover{ transform:translateY(-2px); }
+.goal-card b{ font-family:'Orbitron',sans-serif; font-size:14px; letter-spacing:.06em; text-transform:uppercase; margin-top:4px; }
+.goal-card > span:not(.gc-ico){ font-size:13px; color:var(--muted); line-height:1.4; }
+.goal-card .gc-ico{ font-size:24px; }
+.goal-card.selected{ border-color:var(--accent); background:#0f2a12; box-shadow:0 0 16px rgba(57,255,20,.35); }
+
+/* ---------- Water page ---------- */
+.w-day-log{ padding:10px 0; border-bottom:1px solid var(--border); }
+.w-day-log:last-child{ border-bottom:0; }
+.w-day-log.current .w-day-head strong{ color:var(--accent); }
+.w-day-head{ display:flex; justify-content:space-between; align-items:center; gap:8px; margin-bottom:6px; flex-wrap:wrap; }
+.water-card{ text-align:center; }
+.bottle{ width:100%; max-width:220px; height:auto; display:block; margin:0 auto; filter:drop-shadow(0 0 16px rgba(57,255,20,.35)); }
+.w-level{ transform:translateY(290px); transition:transform 1.1s cubic-bezier(.2,.8,.2,1); }
+.w-wave{ animation:waveMove 2.6s linear infinite; }
+.w-wave-b{ animation-duration:3.6s; animation-direction:reverse; }
+@keyframes waveMove{ from{ transform:translateX(0); } to{ transform:translateX(-80px); } }
+.w-amount{ font-family:'Orbitron',sans-serif; font-size:20px; margin-top:12px; letter-spacing:.05em; }
+.w-pct{ color:var(--accent); font-family:'Orbitron',sans-serif; font-size:30px; text-shadow:0 0 14px rgba(57,255,20,.6); }
+.w-quick{ display:grid; grid-template-columns:repeat(auto-fit,minmax(130px,1fr)); gap:10px; }
+.w-chip{ padding:12px 10px; font-size:13px; }
+.w-week{ display:flex; align-items:flex-end; gap:10px; height:200px; padding-top:10px; }
+.w-day{ flex:1; height:100%; display:flex; flex-direction:column; align-items:center; justify-content:flex-end; gap:6px; }
+.w-bar{ width:100%; height:100%; background:var(--panel2); border:1px solid var(--border); border-radius:8px; position:relative; overflow:hidden; }
+.w-bar i{ position:absolute; left:0; right:0; bottom:0; height:var(--h); border-radius:6px 6px 0 0; background:linear-gradient(0deg,var(--accent),var(--accent2)); animation:growUp .9s ease both; }
+.w-bar.over i{ box-shadow:0 0 14px var(--accent); }
+.w-day span{ font-size:12px; color:var(--muted); }
+.w-day.selected span{ color:var(--accent); font-weight:700; }
+.w-day.selected .w-bar{ border-color:var(--accent); box-shadow:0 0 12px rgba(57,255,20,.35); }
+@keyframes growUp{ from{ height:0; } }
+.w-tips{ margin:0; padding-left:20px; line-height:1.9; color:var(--muted); }
+.w-tips li{ margin-bottom:4px; }
+.w-log-row{ display:flex; justify-content:space-between; align-items:center; padding:8px 0; border-bottom:1px solid var(--border); }
+
+/* ---------- YouTube demo button ---------- */
+.demo-box{ margin-top:14px; text-align:center; }
+.yt-btn{ display:inline-block; text-decoration:none; }
+
+/* ---------- Learn page ---------- */
+.lrn-groups{ display:grid; grid-template-columns:repeat(auto-fit,minmax(130px,1fr)); gap:12px; }
+.lrn-tile{ background:var(--panel2); border:1px solid var(--border); border-radius:12px; padding:16px 10px; text-align:center; cursor:pointer; color:var(--text); font-family:inherit; transition:transform .2s, box-shadow .2s; animation:pop .5s ease both; }
+.lrn-tile:hover{ transform:translateY(-4px); }
+.lrn-tile.active{ border-color:var(--accent); box-shadow:0 0 18px rgba(57,255,20,.35); }
+.lrn-tile b{ display:block; font-family:'Orbitron',sans-serif; font-size:13px; letter-spacing:.06em; text-transform:uppercase; margin:6px 0 2px; }
+.lrn-ico{ font-size:30px; display:block; }
+.lrn-ex-grid{ display:flex; flex-wrap:wrap; gap:8px; }
+.lrn-ex{ background:var(--panel2); border:1px solid var(--border); color:var(--text); border-radius:999px; padding:8px 14px; cursor:pointer; font-size:14px; font-family:inherit; }
+.lrn-ex.active{ background:var(--accent); color:#000; border-color:var(--accent); font-weight:700; box-shadow:0 0 14px rgba(57,255,20,.5); }
+.lrn-detail{ display:grid; grid-template-columns:minmax(200px,260px) 1fr; gap:24px; align-items:start; }
+.lrn-title{ font-family:'Orbitron',sans-serif; margin:6px 0 10px; font-size:22px; letter-spacing:.04em; text-transform:uppercase; }
+.lrn-detail p{ margin:8px 0; line-height:1.55; }
+.figure{ margin:0; text-align:center; }
+.figure svg{ display:block; width:100%; max-width:340px; height:auto; margin:0 auto; }
+.body-svg .line{ fill:none; stroke:#2a5a2a; stroke-width:1.5; stroke-dasharray:4 4; }
+.plate{ margin:0; text-align:center; }
+.plate img{ width:100%; max-width:420px; height:auto; background:#f4f1e8; border-radius:12px; border:1px solid var(--border); padding:6px; }
+.plate figcaption{ margin-top:8px; }
+.fig-wrap{ position:relative; width:100%; max-width:340px; margin:0 auto; }
+.fig-wrap img{ width:100%; height:auto; display:block; border-radius:12px; border:1px solid var(--border); }
+.fig-hl{ position:absolute; inset:0; width:100%; height:100%; pointer-events:none; }
+.fig-hl ellipse{ fill:rgba(57,255,20,.45); stroke:#eafff0; stroke-width:3; filter:drop-shadow(0 0 10px #39ff14); animation:pulseFig 1.6s ease-in-out infinite; }
+@keyframes pulseFig{ 0%,100%{ fill-opacity:.35; } 50%{ fill-opacity:.7; } }
+.body-svg .skin{ fill:url(#skinG); stroke:#1f4a1f; stroke-width:1.2; }
+.body-svg .mus{ fill:#16301a; stroke:#2f7a2f; stroke-width:1; }
+.body-svg .hl{ fill:url(#hlG); stroke:#eafff0; stroke-width:1.4; animation:pulseHL 1.6s ease-in-out infinite; }
+@keyframes pulseHL{ 0%,100%{ filter:drop-shadow(0 0 4px #39ff14); opacity:.85; } 50%{ filter:drop-shadow(0 0 14px #39ff14); opacity:1; } }
+@media (max-width:760px){ .lrn-detail{ grid-template-columns:1fr; } }
+
+/* ---------- Welcome screen ---------- */
+#welcome{ position:fixed; inset:0; z-index:1000; display:flex; align-items:center; justify-content:center;
+  background:rgba(0,0,0,.72); backdrop-filter:blur(4px); transition:opacity .6s ease; }
+#welcome.gone{ opacity:0; pointer-events:none; }
+.wel-inner{ text-align:center; padding:24px; width:100%; max-width:760px; animation:rise .8s ease both; }
+.wel-art{ width:100%; height:auto; max-height:52vh; filter:drop-shadow(0 0 18px rgba(57,255,20,.35)); }
+.wel-brand{ font-family:'Orbitron',sans-serif; font-size:clamp(28px,6vw,52px); font-weight:900; letter-spacing:.06em; text-transform:uppercase; margin-top:8px; }
+.wel-brand span{ color:var(--accent); text-shadow:0 0 18px rgba(57,255,20,.8); }
+.wel-tag{ color:var(--muted); letter-spacing:.12em; text-transform:uppercase; margin:8px 0 24px; }
+.wel-start{ font-size:18px; padding:14px 56px; animation:pulseGlow 2s ease-in-out infinite; }
+@keyframes pulseGlow{ 0%,100%{ box-shadow:0 0 16px rgba(57,255,20,.4); } 50%{ box-shadow:0 0 36px rgba(57,255,20,.9); } }
+
+/* ---------- Progress styles ---------- */
+.pg-level-top{ display:flex; justify-content:space-between; align-items:center; margin-bottom:10px; font-family:'Orbitron',sans-serif; letter-spacing:.08em; text-transform:uppercase; }
+.pg-bar{ height:14px; border-radius:999px; background:var(--panel2); border:1px solid var(--border); overflow:hidden; }
+.pg-bar > div{ height:100%; width:0; background:linear-gradient(90deg,var(--accent),var(--accent2)); box-shadow:0 0 16px var(--accent); transition:width 1.2s ease; }
+.pg-heat{ display:grid; grid-template-rows:repeat(7,1fr); grid-auto-flow:column; gap:4px; height:130px; }
+.pg-heat i{ display:block; border-radius:3px; background:var(--panel2); border:1px solid var(--border); animation:pop .5s ease both; }
+.pg-heat i.s1{ background:rgba(57,255,20,.45); }
+.pg-heat i.s2{ background:var(--accent); box-shadow:0 0 8px var(--accent); }
+.legend .sw{ display:inline-block; width:12px; height:12px; border-radius:3px; margin:0 3px; vertical-align:middle; }
+.sw.s0{ background:var(--panel2); border:1px solid var(--border); } .sw.s1{ background:rgba(57,255,20,.45); } .sw.s2{ background:var(--accent); }
+.pg-part{ margin-bottom:12px; }
+.pg-part .lbl{ display:flex; justify-content:space-between; font-size:14px; margin-bottom:4px; }
+.pg-part .track{ height:10px; border-radius:6px; background:var(--panel2); overflow:hidden; }
+.pg-part .fill{ height:100%; width:var(--w); border-radius:6px; background:linear-gradient(90deg,var(--accent),var(--accent2)); animation:grow .9s ease both; }
+.pg-head{ display:flex; justify-content:space-between; align-items:center; gap:12px; flex-wrap:wrap; margin-bottom:8px; }
+.pg-head select{ max-width:280px; }
+#pgSpark svg{ width:100%; height:auto; }
+.spark-line{ stroke-dasharray:1; stroke-dashoffset:1; animation:draw 1.6s ease forwards; }
+.pg-badges{ display:grid; grid-template-columns:repeat(auto-fit,minmax(170px,1fr)); gap:12px; }
+.badge{ border:1px solid var(--border); border-radius:10px; padding:14px; background:var(--panel2); transition:transform .2s; }
+.badge:hover{ transform:translateY(-3px); }
+.badge.on{ border-color:var(--accent); box-shadow:0 0 14px rgba(57,255,20,.25); }
+.badge.off{ opacity:.4; filter:grayscale(1); }
+.badge b{ display:block; font-family:'Orbitron',sans-serif; font-size:13px; letter-spacing:.06em; margin-bottom:4px; }
+.badge span{ font-size:13px; color:var(--muted); }
+@keyframes grow{ from{ width:0; } }
+@keyframes draw{ to{ stroke-dashoffset:0; } }
+@keyframes pop{ from{ opacity:0; transform:scale(.6); } to{ opacity:1; transform:none; } }
+
+/* ---------- AI Coach styles ---------- */
+.chat{ max-height:360px; overflow-y:auto; display:flex; flex-direction:column; gap:10px; padding-right:4px; }
+.msg{ padding:10px 12px; border-radius:10px; max-width:85%; white-space:pre-line; font-size:15px; line-height:1.5; }
+.msg.me{ align-self:flex-end; background:var(--panel2); border:1px solid var(--border); }
+.msg.coach{ align-self:flex-start; background:rgba(57,255,20,.08); border:1px solid var(--border); }
+.chips{ display:flex; flex-wrap:wrap; gap:8px; margin-top:12px; }
+.chips button{ font-size:13px; padding:6px 10px; }
+
 /* ---------- Tables on small screens ---------- */
 .table-wrap{ overflow-x:auto; -webkit-overflow-scrolling:touch; }
 select.swap{ min-width:260px; }
@@ -114,18 +256,92 @@ button.btn:active{ transform:scale(.97); }
   aside .note{display:none}
   main{padding:16px}
 }
+/* ---------- Height ruler ---------- */
+.unit-toggle{ display:flex; width:fit-content; margin:0 auto 14px; border:1px solid var(--border); border-radius:999px; overflow:hidden; }
+.unit-btn{ background:var(--panel2); color:var(--muted); border:0; padding:8px 24px; cursor:pointer; font-family:'Orbitron',sans-serif; font-size:13px; letter-spacing:.06em; }
+.unit-btn.active{ background:var(--accent); color:#000; font-weight:700; }
+.ruler-wrap{ display:flex; flex-direction:column; align-items:center; gap:10px; }
+.ruler-readout{ font-family:'Orbitron',sans-serif; font-size:44px; color:var(--accent); text-shadow:0 0 16px rgba(57,255,20,.6); }
+.ruler-readout small{ font-size:16px; margin-left:6px; color:var(--muted); }
+.ruler{ position:relative; width:100%; max-width:260px; height:300px; overflow:hidden; border:1px solid var(--border); border-radius:14px; background:var(--panel2); touch-action:none; cursor:ns-resize; user-select:none; }
+.ruler-track{ position:absolute; left:0; right:0; top:0; }
+.ruler-track .tick{ position:absolute; left:0; width:14px; height:1px; background:var(--muted); opacity:.6; }
+.ruler-track .tick.major{ width:28px; background:var(--text); opacity:1; }
+.ruler-track .tick-label{ position:absolute; left:38px; transform:translateY(-50%); font-size:12px; color:var(--muted); font-family:'Orbitron',sans-serif; }
+.ruler-pointer{ position:absolute; left:0; right:0; top:150px; height:2px; background:var(--accent); box-shadow:0 0 12px var(--accent); pointer-events:none; }
+
+/* Height stage: figure scaled to the chosen height, blue head line, ruler on the right */
+.height-stage{ position:relative; width:100%; max-width:360px; height:600px; }
+.height-fig{ position:absolute; left:50%; bottom:50px; transform:translateX(-50%); height:220px; }
+.height-img{ display:block; height:100%; width:auto; pointer-events:none; }
+.height-fig .figure svg{ height:100%; width:auto; max-width:none; }
+.height-fig figcaption{ display:none; }
+.height-stage .ruler{ position:absolute; right:0; top:0; width:96px; height:330px; max-width:none; }
+.height-stage .ruler-pointer{ top:0; }
+.head-line{ position:absolute; left:0; right:0; height:0; border-top:2px solid var(--accent); box-shadow:0 0 10px var(--accent); }
+.head-line span{ position:absolute; left:0; top:-24px; font-family:'Orbitron',sans-serif; font-size:14px; color:var(--accent); text-shadow:0 0 10px rgba(57,255,20,.6); }
+
 </style>
 </head>
 <body>
 
+<!-- WELCOME -->
+<div id="welcome">
+  <div class="wel-inner">
+    <svg class="wel-art" viewBox="0 0 800 380" aria-hidden="true">
+      <defs>
+        <radialGradient id="wGlow" cx="50%" cy="50%" r="50%">
+          <stop offset="0" stop-color="#39ff14" stop-opacity=".55"/>
+          <stop offset="1" stop-color="#39ff14" stop-opacity="0"/>
+        </radialGradient>
+        <linearGradient id="wMetal" x1="0" x2="0" y1="0" y2="1">
+          <stop offset="0" stop-color="#2a332a"/><stop offset="1" stop-color="#050805"/>
+        </linearGradient>
+        <filter id="wBlur"><feGaussianBlur stdDeviation="7"/></filter>
+      </defs>
+      <ellipse cx="400" cy="190" rx="380" ry="170" fill="url(#wGlow)"/>
+      <g fill="none" stroke="#39ff14" stroke-width="2">
+        <ellipse cx="400" cy="190" rx="310" ry="128" opacity=".45"/>
+        <ellipse cx="400" cy="190" rx="240" ry="92" opacity=".7"/>
+      </g>
+      <path d="M90 70 Q250 -10 400 40 T710 70" fill="none" stroke="#39ff14" stroke-width="3" opacity=".5"/>
+      <path d="M110 320 Q260 390 400 350 T690 320" fill="none" stroke="#ffe600" stroke-width="2" opacity=".35"/>
+      <!-- barbell glow -->
+      <g fill="#39ff14" opacity=".4" filter="url(#wBlur)">
+        <rect x="66" y="106" width="42" height="168" rx="8"/><rect x="692" y="106" width="42" height="168" rx="8"/>
+      </g>
+      <!-- bar -->
+      <rect x="110" y="182" width="580" height="16" rx="8" fill="url(#wMetal)" stroke="#39ff14" stroke-width="1.5"/>
+      <!-- plates -->
+      <g fill="url(#wMetal)" stroke="#39ff14" stroke-width="2.5">
+        <rect x="70" y="110" width="34" height="160" rx="8"/>
+        <rect x="104" y="140" width="18" height="100" rx="5"/>
+        <rect x="696" y="110" width="34" height="160" rx="8"/>
+        <rect x="678" y="140" width="18" height="100" rx="5"/>
+      </g>
+      <!-- collars -->
+      <g fill="#39ff14"><rect x="236" y="172" width="8" height="36" rx="3"/><rect x="556" y="172" width="8" height="36" rx="3"/></g>
+      <!-- lightning burst -->
+      <path d="M400 18 L414 74 L392 74 L408 130 L380 74 L402 74 Z" fill="#ffe600" opacity=".85" stroke="#39ff14" stroke-width="1.5"/>
+    </svg>
+    <div class="wel-brand">Muscle<span>Factory</span></div>
+    <p class="wel-tag">Train smart · Eat right · Level up</p>
+    <button id="startBtn" class="btn wel-start" type="button">Start</button>
+  </div>
+</div>
+
 <aside>
   <div class="brand">Muscle<span>Factory</span></div>
   <nav>
-    <button data-s="dashboard" class="active">Dashboard</button>
+    <button data-s="learn" class="active">Learn Workouts</button>
+    <button data-s="dashboard">Goals</button>
     <button data-s="program">Program</button>
     <button data-s="log">Log Workout</button>
     <button data-s="diet">Diet Plan</button>
-    <button data-s="history">History &amp; Progress</button>
+    <button data-s="coach">AI Coach</button>
+    <button data-s="water">Water Intake</button>
+    <button data-s="progress">Progress</button>
+    <button data-s="history">History</button>
   </nav>
   <div class="note" style="margin-top:auto">Your data is saved in this browser only.</div>
 </aside>
@@ -145,46 +361,98 @@ button.btn:active{ transform:scale(.97); }
     </div>
 
     <div class="grid g2" style="margin-top:16px">
-      <form class="card" id="profileForm" style="margin-bottom:0">
-        <h3>Profile</h3>
-        <div class="field"><label for="pHeight">Height (cm)</label><input id="pHeight" type="number" min="100" max="250" step="0.1" required></div>
-        <div class="field"><label for="pWeight">Weight (kg)</label><input id="pWeight" type="number" min="30" max="300" step="0.1" required></div>
-        <div class="field"><label for="pLevel">Training experience</label>
-          <select id="pLevel">
-            <option value="beginner">Beginner (under 1 year)</option>
-            <option value="intermediate">Intermediate (1–3 years)</option>
-            <option value="advanced">Advanced (3+ years)</option>
-          </select>
+      <form class="card wizard" id="profileForm" style="margin-bottom:0">
+        <div class="wiz-top">
+          <button type="button" class="wiz-back" id="wizBack" aria-label="Back">←</button>
+          <div class="wiz-bar"><div id="wizBarFill"></div></div>
+          <span class="wiz-count" id="wizCount">1/7</span>
         </div>
-        <div class="field"><label for="pAge">Age (years)</label><input id="pAge" type="number" min="14" max="90" required></div>
-        <div class="field"><label for="pSex">Sex</label>
-          <select id="pSex"><option value="male">Male</option><option value="female">Female</option></select>
+
+        <div class="wiz-step" data-step="0">
+          <h2 class="wiz-q">What is your current height?</h2>
+          <div class="unit-toggle">
+            <button type="button" class="unit-btn active" data-unit="cm">cm</button>
+            <button type="button" class="unit-btn" data-unit="ft">ft</button>
+          </div>
+          <div class="ruler-wrap">
+            <div class="ruler-readout"><span id="hBig">170</span><small id="hUnit">cm</small></div>
+            <div class="height-stage" id="heightStage">
+              <div class="height-fig" id="heightFig"></div>
+              <div class="head-line" id="headLine"><span id="headLbl">170 cm</span></div>
+              <div class="ruler" id="ruler">
+                <div class="ruler-track" id="rulerTrack"></div>
+                <div class="ruler-pointer" id="rulerPtr"></div>
+              </div>
+            </div>
+            <p class="note" style="text-align:center">Drag the ruler or scroll to set your height.</p>
+          </div>
+          <input type="hidden" id="pHeight" value="170">
         </div>
-        <div class="field"><label for="pActivity">Daily activity (outside training)</label>
-          <select id="pActivity">
-            <option value="sedentary">Sedentary (desk job, little walking)</option>
-            <option value="light">Light (walks, standing work)</option>
-            <option value="moderate">Moderate (on your feet, some active days)</option>
-            <option value="very">Very active (physical job or lots of walking)</option>
-          </select>
+
+        <div class="wiz-step" data-step="1">
+          <h2 class="wiz-q">What is your current weight?</h2>
+          <div class="fit-slider">
+            <div class="fit-head"><span>Weight</span><b id="wVal">70 kg</b></div>
+            <input id="pWeight" type="range" min="30" max="200" step="0.5" value="70">
+          </div>
         </div>
-        <div class="field"><label for="pSplit">Workout split</label>
-          <select id="pSplit">
-            <option value="bodypart6">Body-part · 6 days (biceps &amp; triceps separate)</option>
-            <option value="ppl3">Push / Pull / Legs · 3 days</option>
-            <option value="ppl6">Push / Pull / Legs · 6 days (each twice a week)</option>
-            <option value="ul4">Upper / Lower · 4 days</option>
-            <option value="fb3">Full Body · 3 days</option>
-          </select>
+
+        <div class="wiz-step" data-step="2">
+          <h2 class="wiz-q">Tell us about you</h2>
+          <div class="field"><label for="pAge">Age (years)</label><input id="pAge" type="number" min="14" max="90" required></div>
+          <div class="field"><label>Sex</label>
+            <input type="hidden" id="pSex" value="male">
+            <div class="pick-cards">
+              <button type="button" class="goal-card" data-pick="pSex" data-value="male"><span class="gc-ico">♂</span><b>Male</b></button>
+              <button type="button" class="goal-card" data-pick="pSex" data-value="female"><span class="gc-ico">♀</span><b>Female</b></button>
+            </div>
+          </div>
         </div>
-        <div class="field"><label for="pGoal">Goal</label>
-          <select id="pGoal">
-            <option value="auto">Auto (recommended from BMI)</option>
-            <option value="bulk">Bulk — build muscle</option>
-            <option value="lean">Lean — lose fat, keep muscle</option>
-          </select>
+
+        <div class="wiz-step" data-step="3">
+          <h2 class="wiz-q">How active are you outside training?</h2>
+          <input type="hidden" id="pActivity" value="moderate">
+          <div class="pick-cards">
+            <button type="button" class="goal-card" data-pick="pActivity" data-value="sedentary"><span class="gc-ico">🪑</span><b>Sedentary</b><span>Desk job, little walking</span></button>
+            <button type="button" class="goal-card" data-pick="pActivity" data-value="light"><span class="gc-ico">🚶</span><b>Light</b><span>Walks, standing work</span></button>
+            <button type="button" class="goal-card" data-pick="pActivity" data-value="moderate"><span class="gc-ico">🏃</span><b>Moderate</b><span>On your feet, some active days</span></button>
+            <button type="button" class="goal-card" data-pick="pActivity" data-value="very"><span class="gc-ico">🏗️</span><b>Very active</b><span>Physical job or lots of walking</span></button>
+          </div>
         </div>
-        <button class="btn" type="submit">Build my plan</button>
+
+        <div class="wiz-step" data-step="4">
+          <h2 class="wiz-q">How experienced are you with fitness?</h2>
+          <input type="hidden" id="pLevel" value="beginner">
+          <div class="pick-cards">
+            <button type="button" class="goal-card" data-pick="pLevel" data-value="beginner"><span class="gc-ico">▁▃</span><b>Beginner</b><span>New to training, or under 1 year</span></button>
+            <button type="button" class="goal-card" data-pick="pLevel" data-value="intermediate"><span class="gc-ico">▁▅▇</span><b>Intermediate</b><span>1 to 3 years of regular training</span></button>
+            <button type="button" class="goal-card" data-pick="pLevel" data-value="advanced"><span class="gc-ico">▁▅█</span><b>Advanced</b><span>3+ years, you know the basics well</span></button>
+          </div>
+        </div>
+
+        <div class="wiz-step" data-step="5">
+          <h2 class="wiz-q">Which workout split do you want?</h2>
+          <input type="hidden" id="pSplit" value="bodypart6">
+          <div class="pick-cards">
+            <button type="button" class="goal-card" data-pick="pSplit" data-value="bodypart6"><span class="gc-ico">6×</span><b>Body-part</b><span>6 days: chest, back, legs, shoulders, biceps, triceps</span></button>
+            <button type="button" class="goal-card" data-pick="pSplit" data-value="ppl3"><span class="gc-ico">3×</span><b>Push Pull Legs</b><span>3 days a week</span></button>
+            <button type="button" class="goal-card" data-pick="pSplit" data-value="ppl6"><span class="gc-ico">6×</span><b>PPL × 2</b><span>6 days, each workout twice a week</span></button>
+            <button type="button" class="goal-card" data-pick="pSplit" data-value="ul4"><span class="gc-ico">4×</span><b>Upper / Lower</b><span>4 days a week</span></button>
+            <button type="button" class="goal-card" data-pick="pSplit" data-value="fb3"><span class="gc-ico">3×</span><b>Full Body</b><span>3 days, every muscle each time</span></button>
+          </div>
+        </div>
+
+        <div class="wiz-step" data-step="6">
+          <h2 class="wiz-q">What is your goal?</h2>
+          <input type="hidden" id="pGoal" value="auto">
+          <div class="goal-cards" id="goalCards">
+            <button type="button" class="goal-card" data-goal="auto"><span class="gc-ico">🎯</span><b>Auto</b><span>Picked from your BMI</span></button>
+            <button type="button" class="goal-card" data-goal="bulk"><span class="gc-ico">💪</span><b>Bulk</b><span>Build muscle with a controlled surplus</span></button>
+            <button type="button" class="goal-card" data-goal="lean"><span class="gc-ico">🔥</span><b>Lean</b><span>Lose fat and keep muscle</span></button>
+          </div>
+        </div>
+
+        <div class="wiz-foot"><button class="btn wiz-next" id="wizNext" type="button">Continue</button></div>
       </form>
 
       <div class="card guidance" style="margin-bottom:0">
@@ -257,6 +525,144 @@ button.btn:active{ transform:scale(.97); }
     <div class="card" style="margin-top:16px"><h3>Meal schedule</h3><div id="dMeals"></div></div>
 
     <div class="card"><h3>Food library</h3><div id="dLib"></div></div>
+  </section>
+
+  <!-- AI COACH -->
+  <section data-sec="coach" class="hidden">
+    <h1>AI Coach</h1>
+    <p class="sub">Your next workout, progress insights and answers to your questions. Runs on this device.</p>
+
+    <div class="card" style="margin-top:16px">
+      <h3>Ask your coach</h3>
+      <div id="coachChat" class="chat"></div>
+      <div id="coachChips" class="chips"></div>
+      <form id="coachForm" class="row" style="margin-top:12px;margin-bottom:0">
+        <div class="field"><input id="coachInput" placeholder="e.g. what should I train today?" autocomplete="off"></div>
+        <div><button class="btn" type="submit">Ask</button></div>
+      </form>
+    </div>
+    <p class="note">Coach advice is built from your logs and settings. It isn't medical advice.</p>
+  </section>
+
+  <!-- LEARN -->
+  <section data-sec="learn" class="hidden">
+    <h1>Learn Your Workouts</h1>
+    <p class="sub">Pick a body part, tap an exercise, and see exactly how to do it.</p>
+    <div id="lrnGroups" class="lrn-groups"></div>
+    <div id="lrnList" class="card" style="margin-top:16px"></div>
+    <div id="lrnDetail" class="card" style="margin-top:16px"></div>
+  </section>
+
+  <!-- WATER -->
+  <section data-sec="water" class="hidden">
+    <h1>Water Intake</h1>
+    <p class="sub">Stay hydrated. Log each drink and watch your bottle fill.</p>
+
+    <div class="grid g2">
+      <div class="card water-card">
+        <svg viewBox="0 0 160 300" class="bottle" role="img" aria-label="Water bottle">
+          <defs>
+            <clipPath id="bottleClip"><path d="M58 20 H102 V58 Q130 70 130 100 V270 Q130 290 110 290 H50 Q30 290 30 270 V100 Q30 70 58 58 Z"/></clipPath>
+            <linearGradient id="waterG" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#7dff4f"/><stop offset="1" stop-color="#14a52a"/></linearGradient>
+          </defs>
+          <path d="M58 20 H102 V58 Q130 70 130 100 V270 Q130 290 110 290 H50 Q30 290 30 270 V100 Q30 70 58 58 Z" fill="#06100a"/>
+          <g clip-path="url(#bottleClip)">
+            <g id="wLevel" class="w-level">
+              <g class="w-wave">
+                <path d="M-160 10 Q-120 -2 -80 10 T0 10 T80 10 T160 10 T240 10 V320 H-160 Z" fill="url(#waterG)" opacity=".85"/>
+              </g>
+              <g class="w-wave w-wave-b">
+                <path d="M-160 14 Q-120 4 -80 14 T0 14 T80 14 T160 14 T240 14 V320 H-160 Z" fill="url(#waterG)" opacity=".4"/>
+              </g>
+            </g>
+            <rect x="38" y="0" width="10" height="300" fill="#fff" opacity=".12"/>
+          </g>
+          <path d="M58 20 H102 V58 Q130 70 130 100 V270 Q130 290 110 290 H50 Q30 290 30 270 V100 Q30 70 58 58 Z" fill="none" stroke="#39ff14" stroke-width="3"/>
+          <rect x="62" y="6" width="36" height="14" rx="4" fill="#39ff14"/>
+        </svg>
+        <div class="w-amount"><span id="wNow">0</span> / <span id="wGoal">0</span> ml</div>
+        <div class="w-pct" id="wPct">0%</div>
+      </div>
+
+      <div class="card">
+        <h3>Log water</h3>
+        <div class="row" style="margin-bottom:12px">
+          <div class="field"><label for="wDate">Date to log for</label><input id="wDate" type="date"></div>
+        </div>
+        <p class="note" style="margin:-4px 0 12px">Showing: <strong id="wDayLabel" style="color:var(--text)">Today</strong>. Pick an earlier date to log water for a day you didn't train.</p>
+        <div class="w-quick">
+          <button class="btn w-chip" type="button" data-ml="150">Sip · 150 ml</button>
+          <button class="btn w-chip" type="button" data-ml="250">Glass · 250 ml</button>
+          <button class="btn w-chip" type="button" data-ml="500">Bottle · 500 ml</button>
+          <button class="btn w-chip" type="button" data-ml="1000">Big · 1 L</button>
+        </div>
+        <form id="waterForm" class="row" style="margin-top:14px;margin-bottom:0">
+          <div class="field"><label for="wCustom">Custom amount (ml)</label><input id="wCustom" type="number" min="10" max="3000" step="10" placeholder="e.g. 330"></div>
+          <div><button class="btn" type="submit">Add</button></div>
+        </form>
+        <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:12px">
+          <button class="btn ghost" id="waterUndo" type="button">Undo last</button>
+        </div>
+        <div id="wStats" class="grid g3" style="margin-top:16px"></div>
+        <form id="goalForm" class="row" style="margin-top:16px;margin-bottom:0">
+          <div class="field"><label for="wGoalInput">Daily goal (litres)</label><input id="wGoalInput" type="number" min="1" max="6" step="0.25"></div>
+          <div><button class="btn ghost" type="submit">Save goal</button></div>
+          <div><button class="btn ghost" id="goalAuto" type="button">Auto</button></div>
+        </form>
+        <p class="note" style="margin-top:10px" id="wGoalNote"></p>
+      </div>
+    </div>
+
+    <div class="grid g2" style="margin-top:16px">
+      <div class="card"><h3 id="wLogTitle">Today's log</h3><div id="wLog"></div></div>
+      <div class="card"><h3 id="wWeekTitle">Last 7 days</h3><div id="wWeek" class="w-week"></div></div>
+    </div>
+
+    <div class="card" style="margin-top:16px">
+      <h3>Hydration tips</h3>
+      <ul class="w-tips">
+        <li>Drink a glass of water when you wake up.</li>
+        <li>Have about 250 ml before each meal.</li>
+        <li>Sip 150–250 ml every 15–20 minutes during training.</li>
+        <li>Drink more on hot days or after a hard session.</li>
+        <li>Pale yellow urine is a good sign that you're hydrated.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- PROGRESS -->
+  <section data-sec="progress" class="hidden">
+    <h1>Your Progress</h1>
+    <p class="sub">Every rep counts. Here is your journey so far.</p>
+
+    <div class="card">
+      <div class="pg-level-top"><span id="pgLevelLabel">Level 1</span><span id="pgXp" class="note"></span></div>
+      <div class="pg-bar"><div id="pgBar"></div></div>
+    </div>
+
+    <div class="grid g3" id="pgStats"></div>
+
+    <div class="grid g2" style="margin-top:16px">
+      <div class="card">
+        <h3>Consistency · last 12 weeks</h3>
+        <div id="pgHeat" class="pg-heat"></div>
+        <p class="note legend" style="margin-top:10px">Less <span class="sw s0"></span><span class="sw s1"></span><span class="sw s2"></span> More</p>
+      </div>
+      <div class="card">
+        <h3>Volume by body part</h3>
+        <div id="pgParts"></div>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:16px">
+      <div class="pg-head"><h3 style="margin:0">Strength curve</h3><select id="pgEx"></select></div>
+      <div id="pgSpark"></div>
+    </div>
+
+    <div class="card">
+      <h3>Achievements</h3>
+      <div id="pgBadges" class="pg-badges"></div>
+    </div>
   </section>
 
   <!-- HISTORY -->
@@ -601,6 +1007,12 @@ function renderDashboard(){
   $('#pSex').value = profile.sex;
   $('#pActivity').value = profile.activity;
   $('#pGoal').value = profile.goal;
+  setGoalCards(profile.goal);
+  setPick('pLevel', profile.level);
+  setPick('pSplit', profile.split);
+  setPick('pSex', profile.sex);
+  setPick('pActivity', profile.activity);
+  syncFitReadouts();
 
   const b = bmiVal(profile), goal = resolveGoal(profile), G = GOALS[goal], plan = getPlan();
   const suggestedDays = getPlan().days.length;
@@ -701,7 +1113,7 @@ function saveWorkout(){
   logs.push({ id:String(ts), ts, date, dayIdx:di, workout:day.name, parts:day.parts, exercises });
   store.set('ironlog.logs', logs);
   toast('Workout saved. Next targets updated.');
-  renderLogForm(); renderHistory(); renderProgress();
+  renderLogForm(); renderHistory(); renderProgress(); renderProgressSection(); renderCoach();
 }
 
 function renderHistory(){
@@ -765,7 +1177,7 @@ function renderProgress(){
 }
 
 function renderAll(){
-  renderDashboard(); renderProgram(); renderLogSelect(); renderHistory(); renderProgress(); renderDiet();
+  renderDashboard(); renderProgram(); renderLogSelect(); renderHistory(); renderProgress(); renderDiet(); renderCoach(); renderProgressSection(); renderLearn(); renderWater();
 }
 
 /* ---------- Diet plan ---------- */
@@ -932,6 +1344,732 @@ $('#dietForm').addEventListener('submit', e => {
   toast('Food preference updated.');
 });
 
+/* ---------- AI Coach (rules engine on this device; no external AI service) ---------- */
+const COACH_QUICK = [
+  'What should I train today?',
+  'How is my progress?',
+  'What should I eat?',
+  'How much protein do I need?',
+  'I feel tired, what should I do?',
+  'Motivate me'
+];
+
+const e1rmOf = sets => Math.max(...sets.map(s => s.w * (1 + s.r / 30))); // Epley estimate
+function daysAgoISO(n){
+  const d = new Date(); d.setDate(d.getDate() - n);
+  return d.getFullYear() + '-' + String(d.getMonth()+1).padStart(2,'0') + '-' + String(d.getDate()).padStart(2,'0');
+}
+
+// Next workout = the day after the last logged one (wraps around the split).
+function nextWorkout(){
+  const plan = getPlan();
+  if (!logs.length) return plan.days[0];
+  const last = sortedLogs().slice(-1)[0];
+  return plan.days[(last.dayIdx + 1) % plan.days.length];
+}
+
+function coachInsights(){
+  const out = [], plan = getPlan();
+  const week = logs.filter(l => l.date >= daysAgoISO(6)).length;
+  out.push(`This week: ${week} of ${plan.days.length} planned sessions.`);
+  const names = {};
+  logs.forEach(l => l.exercises.forEach(e => names[e.id] = e.name));
+  Object.keys(names).forEach(id => {
+    const hist = sortedLogs().map(l => {
+      const x = l.exercises.find(e => e.id === id);
+      return x ? e1rmOf(x.sets) : null;
+    }).filter(v => v !== null);
+    if (hist.length < 2) return;
+    const last = hist[hist.length - 1], best = Math.max(...hist.slice(0, -1));
+    if (last > best) out.push(`New best on ${names[id]}: estimated 1RM ${last.toFixed(1)} kg.`);
+    else if (hist.length >= 3 && hist.slice(-3).every(v => v <= best))
+      out.push(`${names[id]} has stalled for 3 sessions. Try one extra rep, a lighter deload week, or a small variation.`);
+  });
+  if (out.length === 1) out.push('Log a few sessions and I will point out your progress and any plateaus.');
+  return out;
+}
+
+function coachAnswer(q){
+  const t = q.toLowerCase(), plan = getPlan(), d = dietTargets(profile), G = GOALS[d.goal];
+  if (/pain|injur|hurt|dizzy|chest|faint|breath/.test(t))
+    return 'Stop that movement. If you have pain, dizziness, chest discomfort or trouble breathing, see a doctor before training again. I can only give general training guidance.';
+  if (/motiv|give up|quit|lazy|bored/.test(t))
+    return 'Consistency beats intensity. Do the next session, even if it is a lighter one. Every logged workout moves you closer to your goal.';
+  if (/tired|sleep|recover|rest|sore/.test(t))
+    return `Recovery: sleep 7–9 hours, keep protein around ${d.prot} g a day, drink 3–4 litres of water, and go lighter if soreness lasts more than 48 hours.`;
+  if (/protein/.test(t))
+    return `Your protein target is ${d.prot} g a day (${G.protein} g per kg of bodyweight). Spread it across the meals on the Diet page.`;
+  if (/eat|diet|food|meal|calor|kcal|nutrition/.test(t))
+    return `Your target is about ${d.kcal} kcal a day: ${d.prot} g protein, ${d.carb} g carbs and ${d.fat} g fat. The meal plan is on the Diet page, and you can swap any food there.`;
+  if (/progress|stronger|improv|plateau|stall|result/.test(t))
+    return coachInsights().join('\n');
+  if (/next|train|today|workout|exercise/.test(t)) {
+    const w = nextWorkout();
+    return `Next workout: ${w.name} (${w.focus}). Open Log Workout and follow the target shown on each exercise.`;
+  }
+  if (/lose|fat|bulk|gain|weight|goal|lean/.test(t))
+    return `Your goal is ${G.label}. ${G.calories} ${G.cardio}`;
+  return "I can help with today's workout, your progress, what to eat, protein, recovery and motivation. Try one of the quick questions below.";
+}
+
+function addMsg(who, text){
+  const div = document.createElement('div');
+  div.className = 'msg ' + (who === 'me' ? 'me' : 'coach');
+  div.textContent = text;                       // textContent: user text is never run as HTML
+  $('#coachChat').appendChild(div);
+  $('#coachChat').scrollTop = $('#coachChat').scrollHeight;
+}
+
+let coachStarted = false;
+function renderCoach(){
+  const w = nextWorkout();
+  if (!coachStarted) {
+    coachStarted = true;
+    $('#coachChips').innerHTML = COACH_QUICK.map(q => `<button class="btn ghost" type="button" data-q="${q}">${q}</button>`).join('');
+    addMsg('coach', `Hi, I'm your coach. Your next workout is ${w.name}. Ask me anything below.`);
+  }
+}
+
+function askCoach(q){
+  addMsg('me', q);
+  addMsg('coach', coachAnswer(q));
+}
+
+$('#coachForm').addEventListener('submit', e => {
+  e.preventDefault();
+  const q = $('#coachInput').value.trim();
+  if (!q) return;
+  $('#coachInput').value = '';
+  askCoach(q);
+});
+$('#coachChips').addEventListener('click', e => {
+  const btn = e.target.closest('button[data-q]');
+  if (btn) askCoach(btn.dataset.q);
+});
+
+/* ---------- Progress (charts, level, achievements) ---------- */
+const PART_ORDER = ['chest','back','legs','shoulders','biceps','triceps','abs'];
+const PART_LABEL = { chest:'Chest', back:'Back', legs:'Legs', shoulders:'Shoulders', biceps:'Biceps', triceps:'Triceps', abs:'Abs', other:'Other' };
+const partOf = id => PART_ORDER.find(k => PARTS[k].pool.includes(id)) || 'other';
+
+function progressStats(){
+  const ss = sortedLogs();
+  const sessions = logs.length;
+  const sessionVol = l => l.exercises.reduce((a, e) => a + e.sets.reduce((b, s) => b + s.w * s.r, 0), 0);
+  const volume = logs.reduce((a, l) => a + sessionVol(l), 0);
+  const parts = {};
+  PART_ORDER.concat('other').forEach(k => parts[k] = 0);
+  logs.forEach(l => l.exercises.forEach(e => {
+    parts[partOf(e.id)] += e.sets.reduce((b, s) => b + s.w * s.r, 0);
+  }));
+  // Personal records: a session whose estimated 1RM beats that exercise's previous best
+  const best = {}; let prs = 0;
+  ss.forEach(l => l.exercises.forEach(e => {
+    const v = e1rmOf(e.sets);
+    if (best[e.id] !== undefined && v > best[e.id]) prs++;
+    best[e.id] = best[e.id] === undefined ? v : Math.max(best[e.id], v);
+  }));
+  // Streaks count distinct training days, so two sessions on the same date count as one day.
+  const days = [...new Set(logs.map(l => l.date))].sort();
+  const gap = (a, b) => Math.round((Date.parse(b) - Date.parse(a)) / 864e5);
+  let streak = 0, bestStreak = 0, run = 0;
+  days.forEach((d, i) => {
+    run = i && gap(days[i - 1], d) === 1 ? run + 1 : 1;
+    bestStreak = Math.max(bestStreak, run);
+  });
+  const last = days[days.length - 1];
+  if (last && (last === daysAgoISO(0) || last === daysAgoISO(1))) {   // streak is still alive
+    streak = 1;
+    for (let i = days.length - 1; i > 0 && gap(days[i - 1], days[i]) === 1; i--) streak++;
+  }
+  const weekCount = logs.filter(l => l.date >= daysAgoISO(6)).length;
+  const absSessions = logs.filter(l => l.exercises.some(e => partOf(e.id) === 'abs')).length;
+  const xp = sessions * 100 + prs * 50 + Math.round(volume / 1000) * 10;
+  return { sessions, volume, prs, streak, bestStreak, weekCount, parts, absSessions, dates: new Set(days),
+           xp, level: Math.floor(xp / 500) + 1, pct: (xp % 500) / 500 };
+}
+
+const BADGES = [
+  { t:'First Rep',      d:'Log your first session',    icon:'🏁', ok:s => s.sessions >= 1 },
+  { t:'Getting Started', d:'Complete 5 sessions',      icon:'🔥', ok:s => s.sessions >= 5 },
+  { t:'Dedicated',      d:'Complete 20 sessions',      icon:'💪', ok:s => s.sessions >= 20 },
+  { t:'Iron Week',      d:'4 sessions in 7 days',      icon:'⚡', ok:s => s.weekCount >= 4 },
+  { t:'PR Hunter',      d:'Set 3 personal records',    icon:'🏆', ok:s => s.prs >= 3 },
+  { t:'Heavy Lifter',   d:'Lift 10,000 kg in total',   icon:'🦾', ok:s => s.volume >= 10000 },
+  { t:'On Fire',        d:'3-day training streak',     icon:'🔥', ok:s => s.streak >= 3 },
+  { t:'Core Strong',    d:'5 sessions with abs',       icon:'🎯', ok:s => s.absSessions >= 5 }
+];
+
+function renderSpark(){
+  const sel = $('#pgEx'), names = {};
+  logs.forEach(l => l.exercises.forEach(e => names[e.id] = e.name));
+  const ids = Object.keys(names), cur = sel.value;
+  sel.innerHTML = ids.length ? ids.map(id => `<option value="${id}">${names[id]}</option>`).join('') : '<option value="">No data yet</option>';
+  if (cur && names[cur]) sel.value = cur;
+  const id = sel.value;
+  if (!id) { $('#pgSpark').innerHTML = '<p class="note">Log a workout to see your strength curve here.</p>'; return; }
+
+  const pts = sortedLogs().map(l => {
+    const x = l.exercises.find(e => e.id === id);
+    return x ? { d: l.date, v: e1rmOf(x.sets) } : null;
+  }).filter(Boolean);
+  if (pts.length < 2) { $('#pgSpark').innerHTML = `<p class="note">Log ${names[id]} at least twice to draw its curve.</p>`; return; }
+
+  const W = 640, H = 220, P = 24;
+  const vals = pts.map(p => p.v), min = Math.min(...vals), max = Math.max(...vals), span = (max - min) || 1;
+  const xy = pts.map((p, i) => [P + i * (W - 2 * P) / (pts.length - 1), H - P - (p.v - min) / span * (H - 2 * P)]);
+  const line = xy.map(([x, y]) => `${x.toFixed(1)},${y.toFixed(1)}`).join(' ');
+  const change = (vals[vals.length - 1] - vals[0]) / vals[0] * 100;
+  $('#pgSpark').innerHTML = `
+    <svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Strength curve for ${names[id]}">
+      <defs><linearGradient id="pgFill" x1="0" x2="0" y1="0" y2="1">
+        <stop offset="0" stop-color="#39ff14" stop-opacity=".35"/><stop offset="1" stop-color="#39ff14" stop-opacity="0"/>
+      </linearGradient></defs>
+      <polygon points="${P},${H - P} ${line} ${W - P},${H - P}" fill="url(#pgFill)"/>
+      <polyline class="spark-line" pathLength="1" points="${line}" fill="none" stroke="#39ff14" stroke-width="3" stroke-linejoin="round" style="filter:drop-shadow(0 0 6px #39ff14)"/>
+      ${xy.map(([x, y], i) => `<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="${i === xy.length - 1 ? 6 : 4}" fill="${i === xy.length - 1 ? '#ffe600' : '#39ff14'}"/>`).join('')}
+      <text x="${P}" y="${H - 4}" fill="#9fc79f" font-size="12">${pts[0].d}</text>
+      <text x="${W - P}" y="${H - 4}" fill="#9fc79f" font-size="12" text-anchor="end">${pts[pts.length - 1].d}</text>
+      <text x="${P}" y="18" fill="#eafff0" font-size="14">Est. 1RM ${vals[0].toFixed(1)} → ${vals[vals.length - 1].toFixed(1)} kg (${change >= 0 ? '+' : ''}${change.toFixed(1)}%)</text>
+    </svg>`;
+}
+
+function renderProgressSection(){
+  const s = progressStats();
+  $('#pgLevelLabel').textContent = `Level ${s.level}`;
+  $('#pgXp').textContent = `${s.xp} XP · ${Math.round((1 - s.pct) * 500)} XP to next level`;
+  $('#pgBar').style.width = Math.round(s.pct * 100) + '%';
+
+  $('#pgStats').innerHTML = [
+    ['Sessions', s.sessions],
+    ['Total lifted', Math.round(s.volume).toLocaleString() + ' kg'],
+    ['Personal records', s.prs],
+    ['Current streak', s.streak + (s.streak === 1 ? ' day' : ' days')],
+    ['Best streak', s.bestStreak + (s.bestStreak === 1 ? ' day' : ' days')]
+  ].map(([l, v]) => `<div class="card stat" style="margin-bottom:0"><div class="l">${l}</div><div class="v">${v}</div></div>`).join('');
+
+  const counts = {};
+  logs.forEach(l => counts[l.date] = (counts[l.date] || 0) + 1);
+  let cells = '';
+  for (let i = 83; i >= 0; i--) {
+    const d = daysAgoISO(i), n = counts[d] || 0;
+    cells += `<i class="${n >= 2 ? 's2' : n === 1 ? 's1' : ''}" style="animation-delay:${(83 - i) * 8}ms" title="${d}: ${n} session(s)"></i>`;
+  }
+  $('#pgHeat').innerHTML = cells;
+
+  const max = Math.max(...Object.values(s.parts), 1);
+  $('#pgParts').innerHTML = PART_ORDER.concat('other').filter(k => k !== 'other' || s.parts.other > 0).map(k => `
+    <div class="pg-part">
+      <div class="lbl"><span>${PART_LABEL[k]}</span><span>${Math.round(s.parts[k]).toLocaleString()} kg</span></div>
+      <div class="track"><div class="fill" style="--w:${(s.parts[k] / max * 100).toFixed(1)}%"></div></div>
+    </div>`).join('') || '<p class="note">Log a workout to see volume by body part.</p>';
+
+  $('#pgBadges').innerHTML = BADGES.map(b => `
+    <div class="badge ${b.ok(s) ? 'on' : 'off'}"><b>${b.icon} ${b.t}</b><span>${b.d}</span></div>`).join('');
+
+  renderSpark();
+}
+
+$('#pgEx').addEventListener('change', renderSpark);
+
+/* ---------- Learn page: exercise guides and body diagram ---------- */
+// [how to, form cue, common mistake] for each exercise
+const INFO = {
+  bench: ["Lie on the bench. Hold the bar a bit wider than your shoulders. Lower it to the middle of your chest, then push it up.", "Keep your shoulder blades pulled back and your feet on the floor.", "Bouncing the bar off your chest, or letting your elbows stick out to the sides."],
+  incline_bb: ["Set the bench to a slight slope. Lower the bar to your upper chest, then push it up.", "Keep your elbows a bit tucked in.", "Making the bench too steep. Then it becomes a shoulder press."],
+  decline_bb: ["The bench slopes down with your head lower. Lower the bar to your lower chest, then push up.", "Hook your feet under the pad so you don't slide.", "Sliding down the bench."],
+  db_bench: ["Lie on a flat bench with a dumbbell in each hand at chest height. Push up, then lower slowly.", "Keep your wrists straight above your elbows.", "Letting the dumbbells move far apart at the bottom."],
+  incline: ["Set the bench to a slight slope. Push the dumbbells up, then lower until you feel a stretch in your upper chest.", "Squeeze your chest at the top.", "Arching your lower back a lot."],
+  decline_db: ["The bench slopes down. Push the dumbbells up over your lower chest.", "Keep your shoulders down.", "Shrugging your shoulders up."],
+  db_fly: ["Lie flat with your arms out to the sides and elbows slightly bent. Bring the dumbbells together over your chest, then open them again.", "Think of hugging a big tree.", "Going down too far, which strains your shoulders."],
+  incline_fly: ["Do the same movement as a flat fly, but on a sloped bench. This works the upper chest.", "Keep the bend in your elbows the same the whole time.", "Turning it into a press."],
+  cable_fly: ["Stand between two cables set at shoulder height. Step forward and bring your hands together in front of your chest.", "Squeeze your chest for one second.", "Using too much weight and swinging your body."],
+  ltoh_fly: ["Set the cables low. Start by your hips and bring your hands up and together, to chest height.", "Lean forward a little.", "Rounding your back or using momentum."],
+  machine_press: ["Sit with your back flat. Hold the handles at chest height and push forward. Come back slowly.", "Keep your shoulders down.", "Locking your elbows hard at the end."],
+  pec_deck: ["Sit tall with your forearms on the pads. Bring the pads together in front of you, then go back slowly.", "Squeeze in the middle for one second.", "Letting your shoulders roll forward."],
+  pushup: ["Put your hands a bit wider than your shoulders. Keep your body straight. Lower your chest toward the floor, then push up.", "Tighten your belly and squeeze your bottom.", "Letting your hips sag, or letting your elbows flare out."],
+  dip: ["Hold the two bars and lean forward a little. Lower yourself until your upper arms are level with the floor, then push up.", "Keep your elbows slightly out and your shoulders down.", "Going too low, which hurts your shoulders."],
+  svend: ["Press two hands together with a plate between them, at chest height. Push the plate out in front, keeping it squeezed, then bring it back.", "Keep squeezing the plate the whole time.", "Letting the plate slip, or using a plate that is too heavy."],
+  row: ["Bend forward until your back is about halfway down. Hold the bar with arms straight. Pull it to your lower ribs, then lower it slowly.", "Keep your back flat and your belly tight.", "Standing up or jerking the bar with your lower back."],
+  pullup: ["Hang from the bar with your hands wider than your shoulders. Pull your chest up to the bar, then lower all the way down.", "Start by pulling your shoulder blades down.", "Swinging, or stopping short at the bottom."],
+  chinup: ["Hang from the bar with your palms facing you. Pull until your chin is over the bar, then lower slowly.", "Lead with your chest.", "Swinging your body to get up."],
+  pulldown: ["Sit with your thighs under the pads. Pull the bar down to your upper chest, leaning back a little. Let it go back up slowly.", "Pull your elbows down and back.", "Pulling the bar behind your neck."],
+  cg_pulldown: ["Use the close handle. Pull it to your chest with your elbows tucked in, then let it go up slowly.", "Squeeze your back at the bottom.", "Leaning back too far."],
+  cable_row: ["Sit up straight with your feet on the platform. Pull the handle to your belly button, then let it go slowly.", "Keep your chest up and your back straight.", "Rocking your body back and forth."],
+  db_row: ["Put one hand and one knee on a bench. Pull the dumbbell up toward your hip, keeping your elbow close to your body.", "Pull your elbow back, not out to the side.", "Twisting your body to lift the weight."],
+  chest_row: ["Lie face down on a sloped bench. Pull the dumbbells up to the sides of your ribs.", "Squeeze your shoulder blades together at the top.", "Lifting your chest off the bench."],
+  sa_cable_row: ["Use one arm at a time. Pull the handle toward your hip and keep your body still.", "Stretch fully at the start.", "Using your body to pull instead of your back."],
+  tbar: ["Stand over the bar and bend forward. Pull the handle to your chest, then lower it slowly.", "Keep your back flat.", "Standing up straight, or jerking the weight."],
+  straight_arm: ["Stand facing a cable with the bar in your hands. Keep your arms almost straight and pull the bar down to your thighs.", "Feel your back working the whole time.", "Bending your elbows, so it becomes a push-down."],
+  face: ["Set the rope at face height. Pull it toward your face and split the rope ends apart. Keep your elbows high.", "Lead with your elbows.", "Using heavy weight and leaning back."],
+  hyper: ["On the bench, bend down at the hips. Then lift your body back to a straight line.", "Move slowly and don't bend backwards at the top.", "Swinging up fast."],
+  rack_pull: ["Set the bar on pins at knee height. Lift it with a straight back until you are standing tall.", "Stand tall at the top.", "Rounding your back to lift."],
+  squat: ["Put the bar on your upper back and stand with your feet shoulder-width apart. Sit back and down until your thighs are about level with the floor, then push up.", "Keep your chest up and your belly tight.", "Letting your knees fall inward, or lifting your heels."],
+  rdl: ["Hold the bar in front of your thighs. Push your hips back with a slight bend in your knees. Lower the bar down your legs, then stand up by squeezing your bottom.", "Keep the bar close to your legs and your back flat.", "Rounding your lower back."],
+  deadlift: ["Stand with the bar over the middle of your feet. Bend down, grip the bar, and stand up tall by pushing the floor away.", "Keep the bar close to your shins.", "Jerking the bar up off the floor."],
+  legpress: ["Sit with your back flat on the pad. Lower the platform until your knees are near your chest, then push back up. Don't lock your knees.", "Keep your lower back on the pad.", "Letting your lower back lift off the seat."],
+  front_squat: ["Hold the bar across the front of your shoulders. Squat down and keep your body upright, then push up.", "Keep your elbows high.", "Letting your elbows drop, so the bar slides off."],
+  hack: ["Stand on the machine with your back on the pad. Lower until your thighs are about level, then push up.", "Keep your heels flat on the platform.", "Locking your knees hard at the top."],
+  bss: ["Put your back foot on a bench and your front foot forward. Lower your back knee toward the floor, then push up with your front foot.", "Keep your body upright.", "Standing too close to the bench."],
+  goblet: ["Hold one dumbbell close to your chest. Squat down between your legs, keeping your chest up, then stand.", "Keep your elbows inside your knees at the bottom.", "Leaning forward and rounding your back."],
+  lunge: ["Step forward and lower your back knee toward the floor. Push back up to standing. Switch legs or do one side at a time.", "Keep your front knee over your ankle.", "Letting your front knee fall inward."],
+  legext: ["Sit with the pad on your shins. Straighten your legs, pause, then lower them slowly.", "Squeeze your thigh at the top.", "Swinging the weight to lift it."],
+  legcurl: ["Lie face down with the pad behind your ankles. Bend your knees and bring your heels toward your bottom. Lower slowly.", "Keep your hips down on the pad.", "Lifting your hips off the pad."],
+  seated_curl: ["Sit with the pad on your lower legs. Bend your knees and pull your heels down and back. Return slowly.", "Keep your back against the seat.", "Using your back to swing."],
+  gm: ["Put the bar on your upper back. Bend forward at the hips with a slight bend in your knees until your body is almost flat. Then stand up.", "Keep your back straight.", "Rounding your lower back."],
+  nordic: ["Kneel with your feet held down. Slowly lean forward, using your back-of-thigh muscles to slow your fall. Push back up.", "Go slowly and control the way down.", "Falling fast to the floor."],
+  hip_thrust: ["Rest your upper back on a bench with the bar across your hips. Push your hips up until your body is straight. Squeeze your bottom at the top, then lower.", "Tuck your chin in and keep your ribs down.", "Arching your lower back at the top."],
+  glute_bridge: ["Lie on your back with your knees bent. Push your hips up and squeeze your bottom at the top. Lower slowly.", "Push through your heels.", "Using your lower back to lift."],
+  calf: ["Stand on the edge of a step with the front of your feet. Rise up onto your toes as high as you can, then lower.", "Pause at the top and stretch at the bottom.", "Bouncing or using only part of the movement."],
+  seated_calf: ["Sit with your knees under the pad. Lift your heels as high as you can, then lower.", "Pause at the top.", "Rushing the reps."],
+  donkey: ["Bend forward at the hips with the pad on your lower back. Rise up onto your toes, then lower.", "Keep your back flat.", "Bending your knees."],
+  ohp: ["Hold the bar at your upper chest with your hands just outside your shoulders. Push it straight up over your head, then lower it to your collarbone.", "Squeeze your bottom to stay steady.", "Leaning back and turning it into a slope press."],
+  seated_db: ["Sit on a bench with a back support. Push the dumbbells up over your head from shoulder height, then lower.", "Keep your back against the pad.", "Arching your back to lift."],
+  arnold: ["Start with the dumbbells in front of your chest, palms facing you. Push up while turning your palms to face forward. Reverse on the way down.", "Turn your hands smoothly.", "Rushing the turn."],
+  push_press: ["Hold the weight at your shoulders. Bend your knees a little, then use your legs to push it up over your head.", "Let your legs start the move and your arms finish it.", "Bending too low."],
+  landmine: ["Hold one end of the bar in a corner. Push it up and forward from your shoulder.", "Keep your core tight.", "Arching your back."],
+  machine_sh: ["Set the seat so the handles are at shoulder height. Push up until your arms are almost straight, then lower slowly.", "Keep your back on the pad.", "Locking your arms hard at the top."],
+  lat_raise: ["Stand with a dumbbell in each hand at your sides. Lift your arms out to shoulder height with a slight bend in your elbows. Lower slowly.", "Lead with your elbows, with your little fingers slightly higher.", "Swinging or shrugging your shoulders."],
+  cable_lat: ["Stand sideways to the cable. Lift your arm out to shoulder height, then let it come back slowly.", "Keep your body still.", "Leaning away to make it easier."],
+  front_raise: ["Hold the dumbbells in front of your thighs. Lift them to shoulder height with straight arms, then lower.", "Keep a slight bend in your elbows.", "Swinging your body."],
+  upright: ["Hold the bar at your thighs with a narrow grip. Pull it up close to your body, with your elbows high, to chest height.", "Keep the bar close to your body.", "Pulling too high, which hurts your shoulders."],
+  rear_delt_fly: ["Bend forward at the hips. Lift the dumbbells out to the sides and squeeze your shoulder blades together.", "Lead with your elbows.", "Using too much weight."],
+  rear_fly: ["Sit facing the pads of a reverse pec deck. Open your arms out to the sides and squeeze your shoulder blades.", "Keep your chest against the pad.", "Pulling with your arms too hard."],
+  plate_front: ["Hold a plate in both hands at arm height. Lift it to shoulder height, then lower slowly.", "Keep your arms straight.", "Swinging your body."],
+  hspu: ["Stand on your hands with your back to a wall. Lower your head toward the floor, then push back up.", "Keep your body tight.", "Arching your lower back."],
+  bb_curl: ["Hold a bar with your palms facing up, hands about shoulder-width apart. Bend your elbows and lift the bar to your shoulders. Lower it slowly.", "Keep your elbows at your sides.", "Swinging your body to lift the bar."],
+  ez_curl: ["Hold the bent bar at the angled grips. Lift it up and keep your elbows at your sides.", "Squeeze at the top.", "Letting your elbows move forward."],
+  curl: ["Hold a dumbbell in each hand with your palms facing forward. Lift them up, turning your palms to face you. Lower slowly.", "Stand tall and keep your elbows still.", "Swinging your body."],
+  hammer: ["Hold the dumbbells with your palms facing each other. Lift them up without turning your wrists.", "Keep your elbows still.", "Swinging your body."],
+  incline_curl: ["Sit on a sloped bench with your arms hanging down. Lift the dumbbells, keeping your upper arms still.", "Stretch your arms fully at the bottom.", "Lifting your elbows forward."],
+  preacher: ["Rest your upper arms on the preacher pad. Lift the weight, then lower it almost straight.", "Don't bounce at the bottom.", "Lifting your elbows off the pad."],
+  concentration: ["Sit down and rest your elbow on the inside of your thigh. Lift the dumbbell and squeeze your biceps.", "Keep your elbow still.", "Swinging your shoulder."],
+  cable_curl: ["Stand facing a low cable with a straight bar. Curl it up, then lower it slowly.", "Keep your elbows at your sides.", "Leaning back."],
+  rope_hammer: ["Attach a rope to a low cable. Curl with your palms facing each other, then lower slowly.", "Keep your elbows still.", "Swinging."],
+  spider: ["Lie face down on a sloped bench with your arms hanging. Curl up, keeping your arms straight up and down.", "Stretch fully at the bottom.", "Using momentum."],
+  bayes: ["Stand between two cables with one arm behind you. Curl forward slowly.", "Keep your shoulder still.", "Swinging your body."],
+  reverse_curl: ["Hold a bar with your palms facing down. Lift it up, keeping your wrists straight.", "Keep your elbows close to your body.", "Using too much weight."],
+  zottman: ["Curl up with your palms facing up. At the top, turn your palms down, then lower slowly.", "Lower slowly.", "Rushing the turn."],
+  drag: ["Hold a bar and slide it up your body. Keep your elbows back, then lower it.", "Keep your elbows behind your body.", "Leaning forward to lift."],
+  machine_curl: ["Sit at the machine and hold the handles. Curl up, then lower slowly.", "Keep your back on the pad.", "Using momentum."],
+  close_grip: ["Hold the bar a bit narrower than your shoulders. Lower it to your lower chest with your elbows tucked in, then push up.", "Keep your elbows close to your body.", "Holding too narrow, which hurts your wrists."],
+  tri: ["Hold the rope at the top of the cable. Push it down until your arms are straight, then let it go back up slowly.", "Spread the rope apart at the bottom.", "Moving your elbows."],
+  pushdown_bar: ["Hold a straight bar at the top of the cable. Push it down until your arms are straight, then let it go back up.", "Keep your elbows still.", "Leaning forward."],
+  oh_db: ["Hold one dumbbell over your head with both hands. Lower it behind your head, then straighten your arms.", "Keep your elbows pointing up.", "Letting your elbows spread out wide."],
+  cable_oh: ["Face away from a high cable with a rope. Straighten your arms over your head, then lower behind your head.", "Keep your elbows close to your head.", "Arching your back."],
+  skull: ["Lie on a bench holding an EZ bar over your chest. Lower it to your forehead, then straighten your arms.", "Keep your upper arms still.", "Letting your elbows spread out."],
+  bench_dip: ["Put your hands on a bench behind you with your legs straight out. Lower your bottom down, then push back up.", "Keep your elbows pointing back.", "Going too low."],
+  diamond: ["Put your hands close together under your chest, with your thumbs and fingers forming a diamond. Lower your chest to your hands, then push up.", "Keep your elbows close to your body.", "Letting your hips sag."],
+  kickback: ["Bend forward with your upper arm level with the floor. Straighten your forearm back, then bend it again.", "Keep your upper arm still.", "Swinging your body."],
+  single_pushdown: ["Work one arm at a time on the cable. Push down, then let it go back slowly.", "Keep your elbow still.", "Leaning into the weight."],
+  jm: ["Lie on a bench holding a bar over your chest. Push it up, then lower it toward your forehead, bending at the elbows.", "Angle your elbows a little forward.", "Letting your elbows spread out."],
+  tri_machine: ["Sit at the machine with your elbows on the pads. Straighten your arms, then return slowly.", "Keep your elbows in place.", "Using momentum."],
+  french: ["Lie on a bench holding one dumbbell over your head. Lower it behind your head, then straighten your arms.", "Keep your elbows pointing up.", "Letting your elbows spread out."],
+  board: ["Lie on a bench and press the bar down until it touches a board on your chest. Then press it up.", "Keep your elbows tucked in.", "Dropping the bar onto your chest."],
+  oh_ext: ["Hold a dumbbell over your head with both hands. Lower it behind your head, then straighten your arms.", "Keep your elbows in.", "Arching your lower back."],
+  cable_crunch: ["Kneel in front of a high cable with the rope by your head. Bend forward and bring your ribs down toward your hips.", "Curl your back forward, not your arms.", "Pulling with your arms."],
+  hlr: ["Hang from a bar. Lift your legs straight out in front until they are level with the floor, then lower them slowly.", "Lower slowly.", "Swinging your body."],
+  woodchop: ["Set a cable high. Pull it diagonally down across your body, turning your upper body as you go.", "Turn your feet with your body.", "Using only your arms."],
+  ab_wheel: ["Kneel and hold the wheel in front of you. Roll it forward, keeping your back flat, then pull back in.", "Tighten your belly the whole time.", "Letting your hips drop or your back arch."],
+  decline_situp: ["Lie on a decline bench and curl your upper body up.", "Keep your hands lightly behind your head.", "Pulling on your neck."],
+  knee_raise: ["Hang from a bar. Bring your knees up toward your chest, then lower slowly.", "Tilt your hips up as your knees rise.", "Swinging your body."],
+  plank: ["Rest on your forearms and toes. Keep your body in a straight line from head to heels. Hold it.", "Squeeze your bottom and breathe slowly.", "Letting your hips sag or lifting your bottom up."],
+  side_plank: ["Rest on one forearm with your body in a straight line from head to feet. Hold it, then switch sides.", "Lift your hips high.", "Letting your hips drop."],
+  crunch: ["Lie on your back with your knees bent. Lift your shoulders off the floor toward your hips.", "Lower slowly.", "Pulling on your neck."],
+  russian: ["Sit with your knees bent and lean back a little. Turn your upper body from side to side.", "Keep your chest up.", "Rounding your back."],
+  dead_bug: ["Lie on your back with your arms up and your knees bent over your hips. Stretch one arm and the opposite leg out, then bring them back.", "Keep your lower back pressed on the floor.", "Arching your back."],
+  bicycle: ["Lie on your back. Bring one elbow toward the opposite knee, then switch sides as if you are pedalling.", "Go slowly and stay in control.", "Rushing."],
+  mtn: ["In a high plank, bring your knees toward your chest one after the other, quickly.", "Keep your hips level.", "Bouncing your hips up."],
+  vup: ["Lie flat, then lift your arms and legs together to make a V shape. Lower with control.", "Keep your back flat.", "Using momentum."],
+  rev_crunch: ["Lie on your back. Bring your knees toward your chest and lift your hips off the floor, then lower.", "Stay in control.", "Swinging your legs."],
+  pallof: ["Stand side-on to a cable at chest height. Push the handle out in front of you and resist it pulling you round.", "Keep your hips facing forward.", "Turning your body."],
+  flutter: ["Lie on your back with your legs lifted. Move your legs up and down in small movements.", "Keep your lower back pressed on the floor.", "Arching your back."]
+};
+
+const LEARN_GROUPS = [
+  { k:'chest', label:'Chest', icon:'💥' }, { k:'back', label:'Back', icon:'🦅' },
+  { k:'legs', label:'Legs', icon:'🦵' }, { k:'shoulders', label:'Shoulders', icon:'🎯' },
+  { k:'biceps', label:'Biceps', icon:'💪' }, { k:'triceps', label:'Triceps', icon:'⚡' },
+  { k:'abs', label:'Abs', icon:'🔥' }
+];
+let learnGroup = 'chest', learnEx = null;
+const learnExercises = g => Object.keys(INFO).filter(id => partOf(id) === g).sort((a, b) => LIB[a].name.localeCompare(LIB[b].name));
+
+// Drawn figure in the glow style. Each muscle is its own shape; the group for the exercise glows.
+// Front view: chest, shoulders, biceps, abs, legs (quads). Back view: back, triceps, hamstrings, calves.
+const TORSO_HALF = [[100,6],[82,12],[72,30],[72,48],[78,62],[84,70],[80,80],[66,88],[50,96],[40,112],[30,150],[24,190],[18,226],[12,250],[10,262],[16,276],[24,278],[28,262],[36,236],[42,205],[50,170],[56,134],[60,118],[64,160],[62,190],[60,212],[64,226],[100,232]];
+const LEG_HALF = [[64,226],[58,250],[52,300],[54,340],[58,378],[58,404],[54,416],[70,420],[84,418],[84,404],[86,378],[90,330],[94,278],[100,232]];
+const FRONT_MUS = [
+  { g:'chest',     pts:[[98,104],[86,96],[72,100],[66,114],[68,130],[80,140],[92,132],[98,118]], mirror:true },
+  { g:'shoulders', pts:[[72,98],[60,96],[50,104],[46,120],[52,134],[62,126],[68,114]], mirror:true },
+  { g:'biceps',    pts:[[46,136],[40,160],[38,184],[46,192],[54,176],[56,148]], mirror:true },
+  { g:'abs',       pts:[[64,150],[80,150],[82,200],[68,206],[62,184]], mirror:true },
+  { g:'legs',      pts:[[68,236],[62,270],[64,300],[80,304],[92,292],[94,262],[88,240],[78,234]], mirror:true }
+];
+const BACK_MUS = [
+  { g:'back',       pts:[[100,70],[84,80],[72,92],[88,108],[100,128],[112,108],[128,92],[116,80]], mirror:false },
+  { g:'back',       pts:[[70,112],[62,134],[64,162],[78,178],[92,160],[90,130],[80,114]], mirror:true },
+  { g:'triceps',    pts:[[52,134],[58,160],[54,182],[44,186],[36,170],[38,144],[46,130]], mirror:true },
+  { g:'glutes',     pts:[[66,222],[88,218],[96,236],[88,256],[70,252],[62,238]], mirror:true },
+  { g:'hamstrings', pts:[[68,262],[62,300],[64,326],[78,330],[88,300],[92,266],[80,256]], mirror:true },
+  { g:'calves',     pts:[[58,332],[56,360],[62,386],[72,386],[78,360],[74,332]], mirror:true }
+];
+const CALF_IDS = ['calf', 'seated_calf', 'donkey'];
+const HAM_IDS = ['rdl', 'legcurl', 'seated_curl', 'gm', 'nordic', 'deadlift', 'hip_thrust', 'glute_bridge'];
+function figGroup(id){
+  if (CALF_IDS.includes(id)) return 'calves';
+  if (HAM_IDS.includes(id)) return 'hamstrings';
+  return partOf(id);
+}
+
+// Smooth closed curve through points (Catmull-Rom converted to cubic Bezier)
+function smoothPath(pts){
+  const n = pts.length;
+  let d = `M${pts[0][0]} ${pts[0][1]}`;
+  for (let i = 0; i < n; i++) {
+    const p0 = pts[(i - 1 + n) % n], p1 = pts[i], p2 = pts[(i + 1) % n], p3 = pts[(i + 2) % n];
+    const c1 = [p1[0] + (p2[0] - p0[0]) / 6, p1[1] + (p2[1] - p0[1]) / 6];
+    const c2 = [p2[0] - (p3[0] - p1[0]) / 6, p2[1] - (p3[1] - p1[1]) / 6];
+    d += ` C${c1[0].toFixed(1)} ${c1[1].toFixed(1)} ${c2[0].toFixed(1)} ${c2[1].toFixed(1)} ${p2[0]} ${p2[1]}`;
+  }
+  return d + ' Z';
+}
+const mirrorPts = pts => pts.map(([x, y]) => [200 - x, y]);
+
+function bodySvg(group){
+  const view = ['back', 'triceps', 'hamstrings', 'calves', 'glutes'].includes(group) ? 'back' : 'front';
+  const cls = g => (g === group ? 'hl' : 'mus');
+  const torso = smoothPath([...TORSO_HALF, ...TORSO_HALF.slice(1, -1).reverse().map(([x, y]) => [200 - x, y])]);
+  const legL = smoothPath(LEG_HALF), legR = smoothPath(mirrorPts(LEG_HALF));
+  const muscles = (view === 'front' ? FRONT_MUS : BACK_MUS).map(m => {
+    const c = cls(m.g);
+    return `<path class="${c}" d="${smoothPath(m.pts)}"/>` + (m.mirror ? `<path class="${c}" d="${smoothPath(mirrorPts(m.pts))}"/>` : '');
+  }).join('');
+  const extra = view === 'front'
+    ? [[90,140],[102,140],[90,162],[102,162],[90,184],[102,184]].map(([x, y]) => `<rect class="${cls('abs')}" x="${x}" y="${y}" width="10" height="18" rx="4"/>`).join('') + `<path class="line" d="M100 112 L100 150"/>`
+    : `<path class="line" d="M100 128 L100 232"/>`;
+  const label = PART_LABEL[group] || group.charAt(0).toUpperCase() + group.slice(1);
+  return `<figure class="figure">
+    <svg viewBox="0 0 200 430" class="body-svg" role="img" aria-label="${label} highlighted">
+      <defs>
+        <linearGradient id="skinG" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#1d2d1d"/><stop offset="1" stop-color="#0a120a"/></linearGradient>
+        <radialGradient id="hlG" cx="50%" cy="40%" r="60%"><stop offset="0" stop-color="#c6ff7a"/><stop offset="1" stop-color="#2ad40f"/></radialGradient>
+      </defs>
+      <path class="skin" d="${torso}"/>
+      <path class="skin" d="${legL}"/><path class="skin" d="${legR}"/>
+      ${muscles}${extra}
+    </svg>
+    <figcaption class="note">Highlighted: ${label} (${view} view)</figcaption>
+  </figure>`;
+}
+
+/* YouTube demo link for each exercise (opens a search for "<exercise> form" in a new tab). */
+function demoHtml(id){
+  const q = encodeURIComponent(LIB[id].name + ' proper form');
+  return `<div class="demo-box">
+    <a class="btn yt-btn" href="https://www.youtube.com/results?search_query=${q}" target="_blank" rel="noopener">▶ Watch demo on YouTube</a>
+    <p class="note" style="text-align:center;margin-top:8px">Opens YouTube in a new tab.</p>
+  </div>`;
+}
+
+function renderLearnDetail(id){
+  if (!id) { $('#lrnDetail').innerHTML = '<p class="note">No exercises in this group yet.</p>'; return; }
+  const L = LIB[id], [how, cue, mistake] = INFO[id], g = partOf(id);
+  const front = ['chest', 'shoulders', 'biceps', 'abs', 'legs'].includes(g);
+  const bulk = prescribe(L, 'bulk', 'intermediate'), lean = prescribe(L, 'lean', 'intermediate');
+  const unit = L.hold ? ' seconds' : '';
+  $('#lrnDetail').innerHTML = `
+    <div class="lrn-detail">
+      <div>
+        ${bodySvg(figGroup(id))}
+        ${demoHtml(id)}
+      </div>
+      <div>
+        <h2 class="lrn-title">${L.name}</h2>
+        <span class="pill acc">${PART_LABEL[g]}</span>
+        <span class="pill">${L.main ? 'Main lift' : 'Accessory'}</span>
+        <p><strong>Muscles worked:</strong> ${L.muscle}</p>
+        <p><strong>How to:</strong> ${how}</p>
+        <p><strong>Form cue:</strong> ${cue}</p>
+        <p><strong>Avoid:</strong> ${mistake}</p>
+        <p><strong>Sets × reps:</strong> Bulk ${bulk.sets} × ${bulk.lo}–${bulk.hi}${unit}, rest ${fmtRest(bulk.rest)} · Lean ${lean.sets} × ${lean.lo}–${lean.hi}${unit}, rest ${fmtRest(lean.rest)}</p>
+      </div>
+    </div>`;
+}
+
+function renderLearn(){
+  $('#lrnGroups').innerHTML = LEARN_GROUPS.map(g => `
+    <button class="lrn-tile ${g.k === learnGroup ? 'active' : ''}" data-g="${g.k}">
+      <span class="lrn-ico">${g.icon}</span><b>${g.label}</b><span class="note">${learnExercises(g.k).length} exercises</span>
+    </button>`).join('');
+  const list = learnExercises(learnGroup);
+  if (!list.includes(learnEx)) learnEx = list[0] || null;
+  $('#lrnList').innerHTML = `
+    <h3>${LEARN_GROUPS.find(g => g.k === learnGroup).label} exercises</h3>
+    <div class="lrn-ex-grid">${list.map(id => `<button class="lrn-ex ${id === learnEx ? 'active' : ''}" data-ex="${id}">${LIB[id].name}</button>`).join('')}</div>`;
+  renderLearnDetail(learnEx);
+}
+
+$('#lrnGroups').addEventListener('click', e => {
+  const b = e.target.closest('[data-g]');
+  if (!b) return;
+  learnGroup = b.dataset.g; learnEx = null; renderLearn();
+});
+$('#lrnList').addEventListener('click', e => {
+  const b = e.target.closest('[data-ex]');
+  if (!b) return;
+  learnEx = b.dataset.ex; renderLearn();
+});
+
+/* ---------- Water intake (each entry belongs to the date chosen in the Water section) ---------- */
+const WATER_KEY = 'ironlog.water';
+let water = store.get(WATER_KEY, {});            // { 'YYYY-MM-DD': [{ t:'HH:MM', ml }] }
+let waterDate = todayStr();                       // the day the Water section is showing
+const waterEntries = d => water[d] || [];
+const waterTotal = d => waterEntries(d).reduce((a, e) => a + e.ml, 0);
+const saveWater = () => store.set(WATER_KEY, water);
+
+// Shift a YYYY-MM-DD date by n days (local calendar, no timezone drift)
+function shiftISO(iso, n){
+  const d = new Date(iso + 'T12:00:00');
+  d.setDate(d.getDate() + n);
+  return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
+}
+
+// Goal for a given day: 35 ml per kg, plus 500 ml if you trained on THAT day. Rounded to 250 ml.
+function waterGoal(d){
+  if (profile.waterGoal) return profile.waterGoal;
+  const trained = logs.some(l => l.date === d);
+  return Math.round((profile.weight * 35 + (trained ? 500 : 0)) / 250) * 250;
+}
+
+function addWater(ml){
+  const d = waterDate, now = new Date();
+  const t = d === todayStr()
+    ? String(now.getHours()).padStart(2, '0') + ':' + String(now.getMinutes()).padStart(2, '0')
+    : '—';
+  water[d] = [...waterEntries(d), { t, ml }];
+  saveWater(); renderWater();
+  toast(`+${ml} ml logged for ${d === todayStr() ? 'today' : d}`);
+}
+
+// Streak = consecutive days that met their goal, ending at today (or yesterday if today is still in progress)
+function waterStreak(){
+  const met = d => waterTotal(d) >= waterGoal(d);
+  let n = 0, i = met(daysAgoISO(0)) ? 0 : 1;
+  while (met(daysAgoISO(i))) { n++; i++; }
+  return n;
+}
+
+function renderWater(){
+  const d = waterDate, goal = waterGoal(d), now = waterTotal(d), pct = Math.min(1, now / goal);
+  const isToday = d === todayStr();
+  $('#wDate').value = d;
+  $('#wDate').max = todayStr();
+  $('#wDayLabel').textContent = isToday ? 'Today' : new Date(d + 'T12:00:00').toLocaleDateString('en', { weekday:'long', day:'numeric', month:'short', year:'numeric' });
+  $('#wLevel').style.transform = `translateY(${Math.round(60 + (1 - pct) * 230)}px)`;
+  $('#wNow').textContent = now;
+  $('#wGoal').textContent = goal;
+  $('#wPct').textContent = Math.round(pct * 100) + '%';
+  $('#wGoalNote').textContent = profile.waterGoal
+    ? `Custom goal: ${(profile.waterGoal / 1000).toFixed(2)} L a day. Tap Auto to go back to the calculated goal.`
+    : `Auto goal for this day: 35 ml per kg of bodyweight, plus 500 ml if you trained that day.`;
+  $('#wGoalInput').value = (goal / 1000).toFixed(2).replace(/\.?0+$/, '');
+
+  const week = [6,5,4,3,2,1,0].map(i => daysAgoISO(i));   // always the last 7 days up to today
+  const avg = Math.round(week.reduce((a, k) => a + waterTotal(k), 0) / 7);
+  const streak = waterStreak();
+  $('#wStats').innerHTML = [
+    ['Remaining', Math.max(0, goal - now).toLocaleString() + ' ml'],
+    ['Streak (goal met)', streak + (streak === 1 ? ' day' : ' days')],
+    ['7-day average', avg.toLocaleString() + ' ml']
+  ].map(([l, v]) => `<div class="card stat" style="margin-bottom:0;padding:12px"><div class="l">${l}</div><div class="v" style="font-size:16px">${v}</div></div>`).join('');
+
+  // Full log across all days, newest day first
+  const days = Object.keys(water).filter(k => waterEntries(k).length).sort().reverse();
+  $('#wLogTitle').textContent = 'Water log (all days)';
+  $('#wLog').innerHTML = days.length
+    ? days.map(k => `
+        <div class="w-day-log${k === d ? ' current' : ''}">
+          <div class="w-day-head"><strong>${k === todayStr() ? 'Today' : k}</strong><span class="note">${waterTotal(k)} ml · goal ${waterGoal(k)} ml</span></div>
+          ${waterEntries(k).map((e, i) => ({ e, i })).reverse().map(({ e, i }) => `
+            <div class="w-log-row"><span><strong>${e.t}</strong> · ${e.ml} ml</span><button class="btn danger" type="button" data-date="${k}" data-del="${i}">Remove</button></div>`).join('')}
+        </div>`).join('')
+    : '<p class="note">No water logged yet. Tap a size above to start.</p>';
+
+  $('#wWeekTitle').textContent = 'Last 7 days';
+  $('#wWeek').innerHTML = week.map(k => {
+    const total = waterTotal(k), g = waterGoal(k), h = Math.min(100, total / g * 100);
+    const label = new Date(k + 'T12:00:00').toLocaleDateString('en', { weekday:'short' });
+    return `<div class="w-day${k === d ? ' selected' : ''}" title="${k}: ${total} ml">
+      <div class="w-bar ${total >= g ? 'over' : ''}"><i style="--h:${h.toFixed(1)}%"></i></div>
+      <span>${label}</span></div>`;
+  }).join('');
+}
+
+$('#wDate').addEventListener('change', e => {
+  const v = e.target.value;
+  if (!v) return;
+  waterDate = v > todayStr() ? todayStr() : v;   // no future dates
+  renderWater();
+});
+document.querySelectorAll('.w-chip').forEach(b => b.addEventListener('click', () => addWater(+b.dataset.ml)));
+$('#waterForm').addEventListener('submit', e => {
+  e.preventDefault();
+  const ml = parseInt($('#wCustom').value, 10);
+  if (!(ml >= 10 && ml <= 3000)) { toast('Enter an amount between 10 and 3000 ml.'); return; }
+  $('#wCustom').value = '';
+  addWater(ml);
+});
+$('#waterUndo').addEventListener('click', () => {
+  const d = waterDate, arr = waterEntries(d);
+  if (!arr.length) { toast('Nothing to undo for this day.'); return; }
+  water[d] = arr.slice(0, -1);
+  saveWater(); renderWater();
+});
+$('#wLog').addEventListener('click', e => {
+  const b = e.target.closest('[data-del]');
+  if (!b) return;
+  const day = b.dataset.date, arr = waterEntries(day).slice();
+  arr.splice(+b.dataset.del, 1);
+  water[day] = arr;
+  saveWater(); renderWater();
+});
+$('#goalForm').addEventListener('submit', e => {
+  e.preventDefault();
+  const litres = parseFloat($('#wGoalInput').value);
+  if (!(litres >= 1 && litres <= 6)) { toast('Enter a goal between 1 and 6 litres.'); return; }
+  profile = { ...profile, waterGoal: Math.round(litres * 1000) };
+  store.set('ironlog.profile', profile);
+  renderWater(); toast('Water goal saved.');
+});
+$('#goalAuto').addEventListener('click', () => {
+  profile = { ...profile, waterGoal: null };
+  store.set('ironlog.profile', profile);
+  renderWater(); toast('Goal set back to automatic.');
+});
+
+/* ---------- Day rollover: date fields that show "today" move to the new day at midnight ---------- */
+// Dates the user picked on purpose (other days) are left alone. Manual changes always work.
+let lastToday = todayStr();
+function checkDayRollover(){
+  const now = todayStr();
+  if (now === lastToday) return;
+  if ($('#logDate').value === lastToday) $('#logDate').value = now;
+  if (waterDate === lastToday) waterDate = now;
+  lastToday = now;
+  renderWater();
+  toast('New day: dates moved to ' + now + '.');
+}
+// Checks every 30 seconds, and again when you come back to the tab (timers can pause in the background).
+setInterval(checkDayRollover, 30000);
+document.addEventListener('visibilitychange', () => { if (!document.hidden) checkDayRollover(); });
+
+/* ---------- Welcome screen: Start opens the Learn page ---------- */
+$('#startBtn').addEventListener('click', () => {
+  const w = $('#welcome');
+  w.classList.add('gone');
+  setTimeout(() => w.remove(), 700);
+  showSection('learn');
+});
+
+/* ---------- Goals profile wizard: one question per screen ---------- */
+const WIZ_STEPS = 7;
+let wizStep = 0;
+function renderWizard(){
+  document.querySelectorAll('.wiz-step').forEach(s => s.classList.toggle('active', +s.dataset.step === wizStep));
+  $('#wizBarFill').style.width = ((wizStep + 1) / WIZ_STEPS * 100) + '%';
+  $('#wizCount').textContent = (wizStep + 1) + '/' + WIZ_STEPS;
+  $('#wizBack').style.visibility = wizStep ? 'visible' : 'hidden';
+  $('#wizNext').textContent = wizStep === WIZ_STEPS - 1 ? 'Build my plan' : 'Continue';
+}
+$('#wizNext').addEventListener('click', () => {
+  if (wizStep < WIZ_STEPS - 1) { wizStep++; renderWizard(); }
+  else $('#profileForm').requestSubmit();
+});
+$('#wizBack').addEventListener('click', () => {
+  if (wizStep > 0) { wizStep--; renderWizard(); }
+});
+renderWizard();
+
+/* ---------- Card pickers and sliders in the Goals profile ---------- */
+function setGoalCards(goal){
+  document.querySelectorAll('.goal-card[data-goal]').forEach(b => b.classList.toggle('selected', b.dataset.goal === goal));
+}
+$('#goalCards').addEventListener('click', e => {
+  const b = e.target.closest('.goal-card');
+  if (!b) return;
+  $('#pGoal').value = b.dataset.goal;
+  setGoalCards(b.dataset.goal);
+});
+function setPick(id, value){
+  $('#' + id).value = value;
+  document.querySelectorAll(`[data-pick="${id}"]`).forEach(b => b.classList.toggle('selected', b.dataset.value === value));
+}
+document.addEventListener('click', e => {
+  const b = e.target.closest('[data-pick]');
+  if (b) setPick(b.dataset.pick, b.dataset.value);
+});
+/* Height ruler: vertical scale, drag or scroll to set, cm / ft readout. Height is always stored in cm. */
+// One scale for the ruler and the figure: PX_PER_CM pixels per cm. The ground line is the 0 cm mark,
+// so a figure of height h stands from GROUND up to GROUND - h*PX_PER_CM, exactly where the ruler shows h.
+const RULER_MIN = 100, RULER_MAX = 250, PX_PER_CM = 2.2;
+const GROUND = RULER_MAX * PX_PER_CM;   // 550px from the top of the ruler to the ground line
+let heightUnit = 'cm', rulerDrag = null;
+function setHeight(cm){
+  $('#pHeight').value = Math.max(RULER_MIN, Math.min(RULER_MAX, Math.round(cm)));
+  syncFitReadouts();
+}
+function buildRuler(){
+  // Figure picture: its top is the head and its bottom is the ground, so its height matches the ruler scale
+  $('#heightFig').innerHTML = '<img class="height-img" src="height-figure.png" alt="Figure scaled to your height" draggable="false">';
+  let html = '';
+  for (let c = RULER_MIN; c <= RULER_MAX; c++) {
+    const y = (RULER_MAX - c) * PX_PER_CM, major = c % 10 === 0;
+    html += `<div class="tick${major ? ' major' : ''}" style="top:${y}px"></div>`;
+    if (major) html += `<span class="tick-label" style="top:${y}px">${c}</span>`;
+  }
+  $('#rulerTrack').style.height = ((RULER_MAX - RULER_MIN) * PX_PER_CM) + 'px';
+  $('#rulerTrack').innerHTML = html;
+}
+function syncFitReadouts(){
+  const cm = +$('#pHeight').value;
+  if (heightUnit === 'cm') { $('#hBig').textContent = cm; $('#hUnit').textContent = 'cm'; }
+  else {
+    const inches = Math.round(cm / 2.54);
+    $('#hBig').textContent = Math.floor(inches / 12) + "′ " + (inches % 12) + "″";
+    $('#hUnit').textContent = '';
+  }
+  // the ruler's pointer sits on the chosen height
+  $('#rulerPtr').style.top = ((RULER_MAX - cm) * PX_PER_CM) + 'px';
+  // the figure is drawn at the same scale as the ruler; the blue line is at the top of its head
+  const figH = cm * PX_PER_CM;
+  $('#heightFig').style.height = figH + 'px';
+  $('#headLine').style.top = (GROUND - figH) + 'px';
+  $('#headLbl').textContent = cm + ' cm';
+  const w = $('#pWeight'), wv = parseFloat(w.value);
+  $('#wVal').textContent = (Number.isInteger(wv) ? wv : wv.toFixed(1)) + ' kg';
+  w.style.setProperty('--p', ((w.value - w.min) / (w.max - w.min) * 100).toFixed(1) + '%');
+}
+$('#ruler').addEventListener('pointerdown', e => {
+  rulerDrag = { y: e.clientY, cm: +$('#pHeight').value };
+  $('#ruler').setPointerCapture(e.pointerId);
+});
+$('#ruler').addEventListener('pointermove', e => {
+  if (rulerDrag) setHeight(rulerDrag.cm + (rulerDrag.y - e.clientY) / PX_PER_CM);
+});
+['pointerup', 'pointercancel'].forEach(t => $('#ruler').addEventListener(t, () => { rulerDrag = null; }));
+$('#ruler').addEventListener('wheel', e => { e.preventDefault(); setHeight(+$('#pHeight').value - Math.sign(e.deltaY)); }, { passive:false });
+document.addEventListener('click', e => {
+  const b = e.target.closest('.unit-btn');
+  if (!b) return;
+  heightUnit = b.dataset.unit;
+  document.querySelectorAll('.unit-btn').forEach(x => x.classList.toggle('active', x === b));
+  syncFitReadouts();
+});
+$('#pWeight').addEventListener('input', syncFitReadouts);
+buildRuler();
+
 /* ---------- Navigation & events ---------- */
 function showSection(name){
   document.querySelectorAll('section[data-sec]').forEach(s => s.classList.toggle('hidden', s.dataset.sec !== name));
@@ -973,7 +2111,7 @@ $('#hTable').addEventListener('click', e => {
   if (id && confirm('Delete this session? This cannot be undone.')) {
     logs = logs.filter(l => l.id !== id);
     store.set('ironlog.logs', logs);
-    renderLogForm(); renderHistory(); renderProgress();
+    renderLogForm(); renderHistory(); renderProgress(); renderProgressSection(); renderCoach();
     toast('Session deleted.');
   }
 });
@@ -998,7 +2136,7 @@ $('#exportBtn').addEventListener('click', () => {
 });
 
 renderAll();
-showSection('dashboard');
+showSection('learn');
 
 // Install as an app: register the offline service worker (needs http:// or https://, not file://)
 if ('serviceWorker' in navigator && location.protocol.startsWith('http')) {
